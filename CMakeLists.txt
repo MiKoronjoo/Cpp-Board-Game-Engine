@@ -10,5 +10,7 @@ add_executable(Cpp_Board_Game_Engine
         Dice.cpp
         Game.cpp
         Piece.cpp
+        PieceType.cpp
+        PieceCoordinates.cpp
         Player.cpp
         main.cpp)

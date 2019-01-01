@@ -3,3 +3,5 @@
 //
 
 #include "Piece.h"
+
+Piece::Piece(const PieceType &type) : _type(type) {}
