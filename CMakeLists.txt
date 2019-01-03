@@ -7,6 +7,7 @@ add_executable(Cpp_Board_Game_Engine
         Board.cpp
         BoardGameObject.cpp
         Card.cpp
+        Clock.cpp
         Dice.cpp
         Game.cpp
         Piece.cpp

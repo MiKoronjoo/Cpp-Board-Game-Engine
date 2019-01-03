@@ -6,8 +6,14 @@
 #define CPP_BOARD_GAME_ENGINE_GAME_H
 
 #include "BoardGameObject.h"
+#include "Board.h"
 
 class Game {
+private:
+    Board _board;
+
+public:
+    virtual void start() = 0;
 
 };
 
