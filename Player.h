@@ -6,7 +6,16 @@
 #define CPP_BOARD_GAME_ENGINE_PLAYER_H
 
 
+#include <string>
+#include "PieceType.h"
+
 class Player {
+public:
+    std::string name;
+    //PieceType piece_type;
+
+
+
 
 };
 

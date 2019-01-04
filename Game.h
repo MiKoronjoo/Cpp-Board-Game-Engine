@@ -5,12 +5,15 @@
 #ifndef CPP_BOARD_GAME_ENGINE_GAME_H
 #define CPP_BOARD_GAME_ENGINE_GAME_H
 
+#include <vector>
 #include "BoardGameObject.h"
 #include "Board.h"
+#include "Player.h"
 
 class Game {
 private:
     Board _board;
+    std::vector<Player> _players;
 
 public:
     virtual void start() = 0;

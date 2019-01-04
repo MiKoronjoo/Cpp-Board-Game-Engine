@@ -4,14 +4,14 @@ project(Cpp_Board_Game_Engine)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(Cpp_Board_Game_Engine
-        Board.cpp
         BoardGameObject.cpp
+        Board.cpp
         Card.cpp
         Clock.cpp
         Dice.cpp
         Game.cpp
-        Piece.cpp
         PieceType.cpp
         PieceCoordinates.cpp
+        Piece.cpp
         Player.cpp
         main.cpp)
