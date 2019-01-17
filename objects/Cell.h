@@ -6,12 +6,14 @@
 #define CPP_BOARD_GAME_ENGINE_CELL_H
 
 
-#include "CellCondition.h"
+enum CellCondition {
+
+};
 
 class Cell {
     int _x;
     int _y;
-    CellCondition* _condition;
+    CellCondition *_condition;
 public:
     Cell(int x, int y);
 

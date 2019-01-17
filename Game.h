@@ -6,8 +6,8 @@
 #define CPP_BOARD_GAME_ENGINE_GAME_H
 
 #include <vector>
-#include "BoardGameObject.h"
-#include "Board.h"
+#include "objects/BoardGameObject.h"
+#include "objects/Board.h"
 #include "Player.h"
 
 class Game {

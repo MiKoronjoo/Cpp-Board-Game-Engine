@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Dice.h"
+#include "objects/Dice.h"
 
 int main() {
     std::cout << "Hello world!!" << std::endl;

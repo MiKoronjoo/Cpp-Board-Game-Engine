@@ -7,7 +7,7 @@
 
 
 #include <string>
-#include "PieceType.h"
+#include "objects/PieceType.h"
 
 class Player {
 public:

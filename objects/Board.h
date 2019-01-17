@@ -8,15 +8,16 @@
 #include "BoardGameObject.h"
 #include "Cell.h"
 
-class Board: public BoardGameObject {
+class Board : public BoardGameObject {
 private:
     int _length;
     int _width;
 
-    Cell** _board;
+    Cell **_board;
 
 public:
     Board(int length, int width);
+
     ~Board();
 };
 
