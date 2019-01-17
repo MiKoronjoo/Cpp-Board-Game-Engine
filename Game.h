@@ -13,6 +13,7 @@
 class Game {
 private:
     Board _board;
+    std::vector<BoardGameObject> _objects;
     std::vector<Player> _players;
 
 public:

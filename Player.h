@@ -12,10 +12,7 @@
 class Player {
 public:
     std::string name;
-    //PieceType piece_type;
-
-
-
+    PieceType piece_type;
 
 };
 

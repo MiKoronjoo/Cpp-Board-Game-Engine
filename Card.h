@@ -6,9 +6,14 @@
 #define CPP_BOARD_GAME_ENGINE_CARD_H
 
 #include "BoardGameObject.h"
+#include "CardType.h"
 
 class Card: public BoardGameObject {
+private:
+    CardType _type;
 
+public:
+    explicit Card(const CardType &type);
 };
 
 

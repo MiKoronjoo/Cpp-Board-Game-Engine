@@ -5,7 +5,12 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(Cpp_Board_Game_Engine
         BoardGameObject.cpp
+        exceptions/BoardGameException.cpp
+        exceptions/InvalidMovementException.cpp
+        Cell.cpp
+        CellCondition.cpp
         Board.cpp
+        CardType.cpp
         Card.cpp
         Clock.cpp
         Dice.cpp

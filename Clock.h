@@ -7,6 +7,13 @@
 
 
 class Clock {
+private:
+    unsigned int _time;
+
+public:
+    Clock();
+    unsigned int get_time() const;
+
 public:
     virtual void start() = 0;
     virtual void pause() = 0;

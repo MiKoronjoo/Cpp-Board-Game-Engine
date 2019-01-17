@@ -6,9 +6,18 @@
 #define CPP_BOARD_GAME_ENGINE_BOARD_H
 
 #include "BoardGameObject.h"
+#include "Cell.h"
 
 class Board: public BoardGameObject {
+private:
+    int _length;
+    int _width;
 
+    Cell** _board;
+
+public:
+    Board(int length, int width);
+    ~Board();
 };
 
 
