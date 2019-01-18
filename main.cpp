@@ -1,5 +1,5 @@
 #include <iostream>
-#include "objects/Dice.h"
+#include "engine/BoardGameEngine.h"
 
 int main() {
     std::cout << "Hello world!!" << std::endl;
