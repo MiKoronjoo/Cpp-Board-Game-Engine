@@ -8,15 +8,16 @@
 #include "BoardGameObject.h"
 #include "PieceType.h"
 #include "PieceCoordinates.h"
+#include "../Player.h"
 
-class Piece: public BoardGameObject {
+class Piece : public BoardGameObject {
 private:
     PieceType _type;
     PieceCoordinates _Coordinates;
+    Player *_player;
 
 public:
-    explicit Piece(const PieceType &type);
-
+    explicit Piece(const PieceType &type, Player *player);
 };
 
 
