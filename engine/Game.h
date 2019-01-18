@@ -11,7 +11,7 @@
 #include "Player.h"
 
 class Game {
-private:
+protected:
     Board _board;
     std::vector<BoardGameObject> _objects;
     std::vector<Player> _players;

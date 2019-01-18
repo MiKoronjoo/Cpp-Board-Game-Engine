@@ -9,15 +9,15 @@
 #include "Cell.h"
 
 class Board : public BoardGameObject {
-private:
+protected:
     int _length;
     int _width;
 
     Cell **_board;
 
 public:
+    Board();
     Board(int length, int width);
-
     ~Board();
 };
 

@@ -14,6 +14,10 @@ public:
     std::string name;
     PieceType piece_type;
 
+    Player();
+    explicit Player(std::string name);
+    Player(std::string name, PieceType piece_type);
+
 };
 
 

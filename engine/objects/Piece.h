@@ -11,7 +11,7 @@
 #include "../Player.h"
 
 class Piece : public BoardGameObject {
-private:
+protected:
     PieceType _type;
     PieceCoordinates _Coordinates;
     Player *_player;

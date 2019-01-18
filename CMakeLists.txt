@@ -19,4 +19,7 @@ add_executable(Cpp_Board_Game_Engine
         engine/objects/Piece.cpp
         engine/Player.cpp
         engine/Movement.cpp
-        main.cpp)
+
+        minesweeper/MineSweeper.cpp
+        minesweeper/main.cpp
+        )

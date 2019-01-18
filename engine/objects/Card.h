@@ -9,7 +9,7 @@
 #include "CardType.h"
 
 class Card: public BoardGameObject {
-private:
+protected:
     CardType _type;
 
 public:

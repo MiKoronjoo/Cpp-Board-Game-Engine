@@ -4,6 +4,9 @@
 
 #include "Board.h"
 
+
+Board::Board() = default;
+
 Board::Board(int length, int width) : _length(length), _width(width) {
     _board = new Cell *[length];
     for (int i = 0; i < length; i++) {
