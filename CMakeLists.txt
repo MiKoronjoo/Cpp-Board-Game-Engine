@@ -8,7 +8,6 @@ add_executable(Cpp_Board_Game_Engine
         exceptions/BoardGameException.cpp
         exceptions/InvalidMovementException.cpp
         objects/Cell.cpp
-        objects/CellCondition.cpp
         objects/Board.cpp
         objects/CardType.cpp
         objects/Card.cpp

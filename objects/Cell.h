@@ -6,22 +6,33 @@
 #define CPP_BOARD_GAME_ENGINE_CELL_H
 
 
-enum CellCondition {
+enum CellType {
+    TEMPORARILY,
+    DISABLED,
+    ENABLED,
+};
 
+enum CellCondition {
+    EMPTY,
+    FULL
 };
 
 class Cell {
+private:
     int _x;
     int _y;
-    CellCondition *_condition;
-public:
-    Cell(int x, int y);
 
+    CellCondition _condition;
+    CellType _type;
+
+public:
+    Cell(int x, int y, CellType type);
     Cell();
 
     void set_x(int x);
-
     void set_y(int y);
+
+    bool is_empty() const;
 };
 
 
