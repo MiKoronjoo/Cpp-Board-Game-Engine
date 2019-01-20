@@ -6,6 +6,8 @@
 #define CPP_BOARD_GAME_ENGINE_CELL_H
 
 
+#include <string>
+
 enum CellType {
     TEMPORARILY,
     DISABLED,
@@ -26,11 +28,10 @@ private:
     CellType _type;
 
 public:
-    Cell(int x, int y, CellType type);
-    Cell();
+    std::string label;
+    Cell(int x, int y, CellType type, CellCondition condition);
 
-    void set_x(int x);
-    void set_y(int y);
+    Cell();
 
     bool is_empty() const;
 };

@@ -7,18 +7,23 @@
 
 #include "BoardGameObject.h"
 #include "Cell.h"
+#include <vector>
 
 class Board : public BoardGameObject {
 protected:
     int _length;
     int _width;
 
-    Cell **_board;
+    std::vector<std::vector<Cell>> _board;
 
 public:
     Board();
+
     Board(int length, int width);
+
     ~Board();
+
+    virtual void show() = 0;
 };
 
 

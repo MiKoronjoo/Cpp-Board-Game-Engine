@@ -6,8 +6,8 @@
 #include "MineSweeper.h"
 
 int main() {
-
-    //TODO: GAME!!
+    MineSweeper game("Player1", "Player2", 8, 7, 15);
+    game.start();
 
     return 0;
 }

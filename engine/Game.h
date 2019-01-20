@@ -12,7 +12,7 @@
 
 class Game {
 protected:
-    Board _board;
+    Board *_board;
     std::vector<BoardGameObject> _objects;
     std::vector<Player> _players;
 

@@ -2,28 +2,27 @@
 // Created by hassan on 1/1/19.
 //
 
+#include <random>
+#include <vector>
 #include "Board.h"
 
 
 Board::Board() = default;
 
 Board::Board(int length, int width) : _length(length), _width(width) {
-    _board = new Cell *[length];
+    _board.reserve(static_cast<unsigned long>(length));
     for (int i = 0; i < length; i++) {
-        _board[i] = new Cell[width];
+        _board[i].reserve(static_cast<unsigned long>(width));
     }
     for (int i = 0; i < length; i++) {
+        std::vector<Cell> temp;
+        temp.reserve(static_cast<unsigned long>(width));
         for (int j = 0; j < width; ++j) {
-            _board[i][j].set_x(i);
-            _board[i][j].set_y(j);
+            temp.emplace_back(i, j, DISABLED, EMPTY);
         }
+        _board.push_back(temp);
     }
 }
 
-Board::~Board() {
-    for (int i = 0; i < _length; i++) {
-        delete[] _board[i];
-    }
-    delete[] _board;
+Board::~Board() = default;
 
-}
