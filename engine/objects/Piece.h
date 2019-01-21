@@ -12,12 +12,12 @@
 
 class Piece : public BoardGameObject {
 protected:
-    PieceType _type;
+    PieceType *_type;
     PieceCoordinates _Coordinates;
     Player *_player;
 
 public:
-    explicit Piece(const PieceType &type, Player *player);
+    explicit Piece(PieceType *type, Player *player);
 };
 
 

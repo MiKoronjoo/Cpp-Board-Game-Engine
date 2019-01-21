@@ -4,4 +4,4 @@
 
 #include "Piece.h"
 
-Piece::Piece(const PieceType &type, Player *player = nullptr) : _type(type), _player(player) {}
+Piece::Piece(PieceType *type, Player *player = nullptr) : _type(type), _player(player) {}

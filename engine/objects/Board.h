@@ -14,16 +14,16 @@ protected:
     int _length;
     int _width;
 
+public:
     std::vector<std::vector<Cell>> _board;
 
-public:
     Board();
 
     Board(int length, int width);
 
-    ~Board();
-
     virtual void show() = 0;
+
+    virtual bool choose_cell(int x, int y) = 0;
 };
 
 

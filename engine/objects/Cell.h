@@ -29,11 +29,18 @@ private:
 
 public:
     std::string label;
+
     Cell(int x, int y, CellType type, CellCondition condition);
 
     Cell();
 
     bool is_empty() const;
+
+    bool is_disabled() const;
+
+    void set_condition(CellCondition condition);
+
+    void set_type(CellType type);
 };
 
 

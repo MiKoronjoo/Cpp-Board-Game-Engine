@@ -24,5 +24,4 @@ Board::Board(int length, int width) : _length(length), _width(width) {
     }
 }
 
-Board::~Board() = default;
 

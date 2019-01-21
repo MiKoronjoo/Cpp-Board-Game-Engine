@@ -12,11 +12,14 @@
 class Player {
 public:
     std::string name;
-    PieceType piece_type;
+    PieceType *piece_type;
 
     Player();
+    ~Player();
     explicit Player(std::string name);
-    Player(std::string name, PieceType piece_type);
+
+    Player(std::string name, PieceType *piece_type);
+    Player(Player&& player);
 
 };
 

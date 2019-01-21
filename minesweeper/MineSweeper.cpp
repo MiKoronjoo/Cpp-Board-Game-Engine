@@ -1,5 +1,7 @@
 #include <utility>
 
+#include <utility>
+
 //
 // Created by hassan on 1/18/19.
 //
@@ -10,7 +12,34 @@
 
 
 void MineSweeper::start() {
-    _board->show();
+    int x, y;
+    int player_index = 0;
+    std::vector<int> found_mines;
+    found_mines.push_back(0);
+    found_mines.push_back(0);
+    while (true) {
+        _board->show();
+        std::cout << _players[player_index].name << "'s turn: ";
+        try {
+            std::cin >> x >> y;
+            bool find = _board->choose_cell(x, y);
+            if (find) {
+                //std::cout << ((MSPieceType *) _players[player_index].piece_type)->getColor() << std::endl;
+                _board->_board[x][y].label = ((MSPieceType *) _players[player_index].piece_type)->getColor();
+                found_mines[player_index]++;
+            } else {
+                player_index++;
+                player_index %= 2;
+            }
+        } catch (BoardGameException &ex) {
+            std::cout << "This cell is disabled!!\nTry again\n";
+        }
+        if (found_mines[player_index] == 8) {
+            _board->show();
+            std::cout << _players[player_index].name << " wins!! :)" << std::endl;
+            break;
+        }
+    }
 }
 
 MineSweeper::MineSweeper(std::string palyer1_name, std::string palyer2_name, unsigned int length, unsigned int width,
@@ -19,8 +48,8 @@ MineSweeper::MineSweeper(std::string palyer1_name, std::string palyer2_name, uns
         throw BoardGameException();  // TODO: Define InvalidNumberOfMinesException
 
     _board = new MSBoard(length, width, mines);
-    _players.emplace_back(palyer1_name, MSPieceType("red"));
-    _players.emplace_back(palyer2_name, MSPieceType("blue"));
+    _players.emplace_back(palyer1_name, new MSPieceType(" R "));
+    _players.emplace_back(palyer2_name, new MSPieceType(" B "));
 
 }
 
@@ -111,8 +140,25 @@ MSBoard::MSBoard(int length, int width, int mines) {
 void MSBoard::show() {
     for (int i = 0; i < _length; i++) {
         for (int j = 0; j < _width; j++) {
-            std::cout << _board[i][j].label;
+            if (_board[i][j].is_disabled())
+                std::cout << _board[i][j].label;
+            else
+                std::cout << " ? ";
         }
         std::cout << std::endl;
     }
 }
+
+bool MSBoard::choose_cell(int x, int y) {
+    if (_board[x][y].is_disabled())
+        throw BoardGameException(); // TODO: Define DisabledCellException
+
+    if (_board[x][y].is_empty()) {
+        _board[x][y].set_type(CellType::DISABLED);
+        return true;
+    }
+    _board[x][y].set_type(CellType::DISABLED);
+    return false;
+}
+
+MSPlayer::MSPlayer() : mines(0) {}

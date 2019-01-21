@@ -7,7 +7,13 @@
 
 #include "../engine/BoardGameEngine.h"
 #include <string>
+#include <iostream>
 
+class MSPlayer: public Player {
+public:
+    unsigned int mines;
+    MSPlayer();
+};
 
 class MSPieceType : public PieceType {
 private:
@@ -17,6 +23,7 @@ public:
 
 public:
     explicit MSPieceType(std::string color);
+    //MSPieceType(const MSPieceType& sag):color(sag.getColor()){}
 };
 
 
@@ -29,6 +36,7 @@ public:
 
     void show() override;
 
+    bool choose_cell(int x, int y) override;
 };
 
 
