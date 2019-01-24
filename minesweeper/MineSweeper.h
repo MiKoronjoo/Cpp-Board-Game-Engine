@@ -9,9 +9,10 @@
 #include <string>
 #include <iostream>
 
-class MSPlayer: public Player {
+class MSPlayer : public Player {
 public:
     unsigned int mines;
+
     MSPlayer();
 };
 
@@ -30,9 +31,11 @@ public:
 class MSBoard : public Board {
 private:
     unsigned int _mines;
+public:
+    unsigned int get_mines() const;
 
 public:
-    MSBoard(int length, int width, int mines);
+    MSBoard(int length, int width, unsigned int mines);
 
     void show() override;
 
@@ -41,6 +44,8 @@ public:
     bool is_valid(int x, int y);
 
     void open_map(int x, int y);
+
+    int mine_counter(int x, int y);
 };
 
 
@@ -50,6 +55,7 @@ public:
                 unsigned int mines);
 
     MineSweeper() = default;
+
     ~MineSweeper();
 
     void start() override;

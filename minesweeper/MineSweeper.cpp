@@ -32,7 +32,8 @@ void MineSweeper::start() {
         } catch (BoardGameException &ex) {
             std::cout << "This cell is disabled!!\nTry again\n";
         }
-        if (found_mines[player_index] == 8) {
+        std::cout << ((MSBoard *) _board)->get_mines() / 2 << "  woooow\n";
+        if (found_mines[player_index] >= ((MSBoard *) _board)->get_mines() / 2 + 1) {
             _board->show();
             std::cout << _players[player_index].name << " wins!! :)" << std::endl;
             break;
@@ -44,6 +45,9 @@ MineSweeper::MineSweeper(std::string palyer1_name, std::string palyer2_name, uns
                          unsigned int mines) {
     if (mines >= length * width)
         throw BoardGameException();  // TODO: Define InvalidNumberOfMinesException
+
+    if (not(mines % 2))
+        mines++;
 
     _board = new MSBoard(length, width, mines);
     _players.emplace_back(palyer1_name, new MSPieceType(" R "));
@@ -69,32 +73,31 @@ bool has_this(std::vector<std::pair<int, int>> &vec, int x, int y) {
     return false;
 }
 
-int mine_counter(const std::vector<std::vector<Cell>> &vec, int x, int y) {
-    int mines = 0,
-            len = static_cast<int>(vec.size()),
-            wid = static_cast<int>(vec[0].size());
-    if (x - 1 >= 0 and vec[x - 1][y].is_empty())
+int MSBoard::mine_counter(int x, int y) {
+    int mines = 0;
+    if (is_valid(x - 1, y) and _board[x - 1][y].is_empty())
         mines++;
-    if (y - 1 >= 0 and vec[x][y - 1].is_empty())
+    if (is_valid(x, y - 1) and _board[x][y - 1].is_empty())
         mines++;
-    if (x + 1 < len and vec[x + 1][y].is_empty())
+    if (is_valid(x + 1, y) and _board[x + 1][y].is_empty())
         mines++;
-    if (y + 1 < wid and vec[x][y + 1].is_empty())
+    if (is_valid(x, y + 1) and _board[x][y + 1].is_empty())
         mines++;
-    if (x - 1 >= 0 and y - 1 >= 0 and vec[x - 1][y - 1].is_empty())
+    if (is_valid(x - 1, y - 1) and _board[x - 1][y - 1].is_empty())
         mines++;
-    if (x + 1 < len and y + 1 < wid and vec[x + 1][y + 1].is_empty())
+    if (is_valid(x + 1, y + 1) and _board[x + 1][y + 1].is_empty())
         mines++;
-    if (x - 1 >= 0 and y + 1 < wid and vec[x - 1][y + 1].is_empty())
+    if (is_valid(x - 1, y + 1) and _board[x - 1][y + 1].is_empty())
         mines++;
-    if (x + 1 < len and y - 1 >= 0 and vec[x + 1][y - 1].is_empty())
+    if (is_valid(x + 1, y - 1) and _board[x + 1][y - 1].is_empty())
         mines++;
     return mines;
 }
 
-MSBoard::MSBoard(int length, int width, int mines) {
+MSBoard::MSBoard(int length, int width, unsigned int mines) {
     _length = length;
     _width = width;
+    _mines = mines;
     srand(static_cast<unsigned int>(time(nullptr)));
     std::vector<std::pair<int, int>> empty_cells;
     empty_cells.reserve(static_cast<unsigned long>(mines));
@@ -126,7 +129,7 @@ MSBoard::MSBoard(int length, int width, int mines) {
     for (int i = 0; i < _length; i++) {
         for (int j = 0; j < _width; j++) {
             if (not _board[i][j].is_empty()) {
-                _board[i][j].label = " " + std::to_string(mine_counter(_board, i, j)) + " ";
+                _board[i][j].label = " " + std::to_string(mine_counter(i, j)) + " ";
             } else
                 _board[i][j].label = " M ";
         }
@@ -194,6 +197,10 @@ void MSBoard::open_map(int x, int y) {
 
 bool MSBoard::is_valid(int x, int y) {
     return x >= 0 and y >= 0 and x < _length and y < _width;
+}
+
+unsigned int MSBoard::get_mines() const {
+    return _mines;
 }
 
 MSPlayer::MSPlayer() : mines(0) {}
