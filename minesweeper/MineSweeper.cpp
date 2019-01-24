@@ -1,7 +1,5 @@
 #include <utility>
 
-#include <utility>
-
 //
 // Created by hassan on 1/18/19.
 //
@@ -150,15 +148,52 @@ void MSBoard::show() {
 }
 
 bool MSBoard::choose_cell(int x, int y) {
+    if (not is_valid(x, y))
+        throw BoardGameException();
+
     if (_board[x][y].is_disabled())
         throw BoardGameException(); // TODO: Define DisabledCellException
 
-    if (_board[x][y].is_empty()) {
+    if (_board[x][y].is_empty()) { // find bomb
         _board[x][y].set_type(CellType::DISABLED);
         return true;
     }
-    _board[x][y].set_type(CellType::DISABLED);
+    open_map(x, y);
     return false;
+}
+
+void MSBoard::open_map(int x, int y) {
+    _board[x][y].set_type(CellType::DISABLED);
+    if (_board[x][y].label == " 0 ") {
+
+        if (is_valid(x - 1, y) and not _board[x - 1][y].is_disabled())
+            open_map(x - 1, y);
+
+        if (is_valid(x, y - 1) and not _board[x][y - 1].is_disabled())
+            open_map(x, y - 1);
+
+        if (is_valid(x + 1, y) and not _board[x + 1][y].is_disabled())
+            open_map(x + 1, y);
+
+        if (is_valid(x, y + 1) and not _board[x][y + 1].is_disabled())
+            open_map(x, y + 1);
+
+        if (is_valid(x - 1, y - 1) and not _board[x - 1][y - 1].is_disabled())
+            open_map(x - 1, y - 1);
+
+        if (is_valid(x - 1, y + 1) and not _board[x - 1][y + 1].is_disabled())
+            open_map(x - 1, y + 1);
+
+        if (is_valid(x + 1, y - 1) and not _board[x + 1][y - 1].is_disabled())
+            open_map(x + 1, y - 1);
+
+        if (is_valid(x + 1, y + 1) and not _board[x + 1][y + 1].is_disabled())
+            open_map(x + 1, y + 1);
+    }
+}
+
+bool MSBoard::is_valid(int x, int y) {
+    return x >= 0 and y >= 0 and x < _length and y < _width;
 }
 
 MSPlayer::MSPlayer() : mines(0) {}

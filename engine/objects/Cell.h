@@ -41,6 +41,7 @@ public:
     void set_condition(CellCondition condition);
 
     void set_type(CellType type);
+
 };
 
 

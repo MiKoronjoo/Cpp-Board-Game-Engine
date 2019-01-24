@@ -37,6 +37,10 @@ public:
     void show() override;
 
     bool choose_cell(int x, int y) override;
+
+    bool is_valid(int x, int y);
+
+    void open_map(int x, int y);
 };
 
 
